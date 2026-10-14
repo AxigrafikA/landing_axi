@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>AXI GRAFIKA – Digital Printing & Graphic Design Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--W:min(100vw,56.27dvh);--p:calc(var(--W)/941);--sky:#51b0ea;--ink:#0b3a8f}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#0b1d33;overscroll-behavior:none;touch-action:pan-x}
+body{font-family:'Poppins',system-ui,sans-serif;display:flex;justify-content:center}
+#app{position:relative;width:var(--W);height:100dvh;overflow:hidden;background:linear-gradient(#51b0ea,#6cc0f0 60%,#7fcaf3);user-select:none}
+#bg{position:absolute;left:0;bottom:0;width:100%;aspect-ratio:1076/1916;background:url('assets/bg.webp') center/100% 100% no-repeat;pointer-events:none}
+#truck{position:absolute;left:59%;top:91%;width:26.5%;height:9%;display:block;z-index:5;pointer-events:auto}
+#truck i{position:absolute;right:6%;top:30%;width:calc(70*var(--p));height:calc(70*var(--p));border-radius:50%;border:calc(4*var(--p)) solid #fff;animation:ring 1.8s infinite}
+#truck svg{position:absolute;right:calc(-4*var(--p));top:calc(40*var(--p));width:calc(52*var(--p));filter:drop-shadow(0 2px 3px #0006);animation:tap 1.8s infinite}
+@keyframes ring{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+@keyframes tap{50%{transform:translate(-4px,-5px) scale(.92)}}
+.bird{position:absolute;width:calc(46*var(--p));left:-12%;z-index:1;animation:fly linear infinite}
+.bird path{animation:flap .5s ease-in-out infinite alternate;transform-origin:50% 60%}
+@keyframes fly{to{left:112%}}
+@keyframes flap{to{transform:scaleY(.45)}}
+#ui{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;padding-top:calc(env(safe-area-inset-top,0px) + max(0px,(100dvh - 1672*var(--p))*.4))}
+#logo{width:calc(590*var(--p));margin-top:calc(22*var(--p));filter:drop-shadow(0 calc(5*var(--p)) calc(6*var(--p)) #0b3a8f55);animation:fl 5s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(calc(-6*var(--p)))}}
+#player{margin-top:calc(14*var(--p));width:calc(666*var(--p));height:calc(80*var(--p));border-radius:calc(40*var(--p));background:linear-gradient(#2d8fe0cc,#1f78cacc);border:calc(2*var(--p)) solid #ffffff55;box-shadow:0 calc(6*var(--p)) calc(16*var(--p)) #0b3a8f55;display:flex;align-items:center;padding:0 calc(14*var(--p));gap:calc(16*var(--p));color:#fff;backdrop-filter:blur(8px)}
+#note{width:calc(62*var(--p));height:calc(62*var(--p));border-radius:50%;background:linear-gradient(#35a3ff,#0f6bd6);border:calc(3*var(--p)) solid #fff;display:grid;place-items:center;flex:none}
+#note svg{width:50%}
+#np{flex:1;min-width:0;line-height:1.25}
+#np small{display:block;font-size:calc(20*var(--p));color:#cfeaff}
+#np b{font-size:calc(21*var(--p));font-weight:600;white-space:nowrap}
+#eq{display:flex;align-items:flex-end;gap:calc(3*var(--p));height:calc(30*var(--p))}
+#eq s{width:calc(4*var(--p));height:100%;background:#aee0ff;border-radius:2px;transform-origin:bottom;transform:scaleY(.2);animation:eq .8s ease-in-out infinite alternate;animation-play-state:paused}
+.on #eq s{animation-play-state:running}
+@keyframes eq{to{transform:scaleY(1)}}
+#pp{width:calc(56*var(--p));height:calc(56*var(--p));border-radius:50%;border:0;background:#fff;display:grid;place-items:center;flex:none}
+#pp svg{width:44%;fill:#1f78ca}
+#vol{width:calc(70*var(--p));accent-color:#fff}
+#panel{margin-top:calc(54*var(--p));width:calc(738*var(--p));border-radius:calc(38*var(--p));background:linear-gradient(#ffffffd9,#e6f4ffe6);border:calc(2*var(--p)) solid #fff;box-shadow:0 calc(10*var(--p)) calc(30*var(--p)) #0b3a8f44;overflow:hidden;padding-bottom:calc(14*var(--p))}
+#car{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;touch-action:pan-x;height:calc(402*var(--p))}
+#car::-webkit-scrollbar{display:none}
+.sl{flex:0 0 100%;scroll-snap-align:start;position:relative;overflow:hidden;color:#fff}
+.sl img.full{width:100%;height:100%;object-fit:cover;display:block}
+.sl h3{font-family:'Baloo 2';font-weight:800;font-size:calc(74*var(--p));line-height:1;text-shadow:0 calc(4*var(--p)) 0 #0004}
+.sl .t{position:absolute;left:calc(40*var(--p));top:calc(60*var(--p));z-index:2}
+.sl p{font-size:calc(26*var(--p));margin-top:calc(10*var(--p));font-weight:600}
+.sl .b{display:inline-block;margin-top:calc(22*var(--p));background:#ffd23a;color:#10316b;font-weight:700;font-size:calc(28*var(--p));padding:calc(12*var(--p)) calc(30*var(--p));border-radius:99px;animation:pul 1.6s infinite}
+@keyframes pul{50%{transform:scale(1.07)}}
+.sl .pic{position:absolute;right:0;bottom:0;width:58%;mask-image:linear-gradient(90deg,transparent,#000 25%)}
+.s2{background:linear-gradient(135deg,#fc4f8c,#c02a9a)}.s3{background:linear-gradient(135deg,#fdbf19,#f58a1d)}.s4{background:linear-gradient(135deg,#6ad337,#169b4b)}
+.big{position:absolute;right:calc(30*var(--p));top:calc(24*var(--p));font-family:'Baloo 2';font-weight:800;font-size:calc(120*var(--p));color:#fff;background:#ff3b45;border-radius:50%;width:calc(190*var(--p));height:calc(190*var(--p));display:grid;place-items:center;transform:rotate(10deg);z-index:3;box-shadow:0 4px 0 #0003}
+#dots{display:flex;justify-content:center;gap:calc(14*var(--p));padding:calc(16*var(--p)) 0}
+#dots i{width:calc(28*var(--p));height:calc(28*var(--p));border-radius:50%;background:#9fd6fb;transition:.3s}
+#dots i.a{background:#1d7ae0;transform:scale(1.1)}
+#cards{display:flex;gap:calc(12*var(--p));padding:0 calc(17*var(--p))}
+.cd{flex:1;height:calc(255*var(--p));border-radius:calc(22*var(--p));position:relative;overflow:hidden;color:#fff;animation:bob 4s ease-in-out infinite}
+.cd:nth-child(2){animation-delay:-1.3s}.cd:nth-child(3){animation-delay:-2.6s}
+@keyframes bob{50%{transform:translateY(calc(-6*var(--p)))}}
+.cd.c1{background:linear-gradient(#fc4f8c,#da3195)}.cd.c2{background:linear-gradient(#fdbf19,#f4a41d)}.cd.c3{background:linear-gradient(#6ad337,#25b346)}
+.cd img{position:absolute;left:0;bottom:0;width:100%;mask-image:linear-gradient(transparent,#000 22%)}
+.cd .ic{position:absolute;left:calc(10*var(--p));top:calc(10*var(--p));width:calc(54*var(--p));height:calc(54*var(--p));border:calc(3*var(--p)) solid #fff;border-radius:calc(14*var(--p));display:grid;place-items:center;font-size:calc(28*var(--p));background:#ffffff26}
+.cd h4{position:absolute;left:calc(72*var(--p));top:calc(12*var(--p));font-family:'Baloo 2';font-weight:800;font-size:calc(27*var(--p));line-height:1.05;text-shadow:0 2px 0 #0003}
+.cd small{position:absolute;left:calc(72*var(--p));top:calc(46*var(--p));font-size:calc(19*var(--p))}
+.cd .pr{position:absolute;left:calc(10*var(--p));top:calc(70*var(--p));font-family:'Baloo 2';font-weight:800;font-size:calc(44*var(--p));line-height:1.1;text-shadow:0 2px 0 #0003}
+.cd .pr sup{font-size:.45em;vertical-align:.5em;margin-right:2px}
+.cd .dc{position:absolute;right:calc(8*var(--p));top:calc(82*var(--p));background:#ffd23a;color:#e0201f;font-weight:700;font-size:calc(21*var(--p));padding:calc(2*var(--p)) calc(9*var(--p));border-radius:99px;transform:rotate(-8deg)}
+#dv{margin:calc(18*var(--p)) calc(12*var(--p)) 0;height:calc(120*var(--p));border-radius:calc(24*var(--p));background:linear-gradient(90deg,#d0effd,#fff 45%,#e8f6ff);display:flex;align-items:center;padding:0 calc(10*var(--p));gap:calc(12*var(--p));border:calc(2*var(--p)) solid #ffffffaa}
+#dv img{height:80%;mask-image:linear-gradient(90deg,transparent,#000 15%)}
+#dv .tx{flex:1;min-width:0}
+#dv h5{font-family:'Baloo 2';font-weight:800;font-style:italic;font-size:calc(38*var(--p));color:#1356b8;line-height:1}
+#dv span{font-size:calc(21*var(--p));color:#1a3d78;font-weight:600;font-style:italic}
+#cov{background:linear-gradient(#3d9bf0,#1d6fd0);border-radius:calc(12*var(--p));color:#fff;font-size:calc(19*var(--p));padding:calc(8*var(--p)) calc(12*var(--p));line-height:1.35;font-weight:600}
+#cov em{display:block;font-style:normal;font-size:calc(14*var(--p));opacity:.85}
+#st{background:linear-gradient(#1f63c9,#0e3f94);border-radius:calc(22*var(--p));color:#fff;text-align:center;padding:calc(10*var(--p)) calc(20*var(--p));font-family:'Baloo 2';font-weight:800;line-height:1;transform:rotate(-3deg);box-shadow:0 3px 0 #0b2a66}
+#st small{font-size:calc(18*var(--p));display:block}#st b{font-size:calc(34*var(--p))}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="bg"><a id="truck" href="#" aria-label="Buka POS AXI GRAFIKA"><i></i><svg viewBox="0 0 24 24"><path d="M5 2l14 12-6.2.6 3.7 7-2.7 1.4-3.7-7L5 20z" fill="#fff" stroke="#10316b" stroke-width="1.4"/></svg></a></div>
+  <svg class="bird" style="top:7%;animation-duration:26s" viewBox="0 0 40 20"><path d="M2 12Q10 0 20 11Q30 0 38 12Q30 8 20 15Q10 8 2 12Z" fill="#fff"/></svg>
+  <svg class="bird" style="top:24%;animation-duration:34s;animation-delay:-14s;width:calc(34*var(--p))" viewBox="0 0 40 20"><path d="M2 12Q10 0 20 11Q30 0 38 12Q30 8 20 15Q10 8 2 12Z" fill="#fff"/></svg>
+  <svg class="bird" style="top:59%;animation-duration:40s;animation-delay:-25s;width:calc(40*var(--p))" viewBox="0 0 40 20"><path d="M2 12Q10 0 20 11Q30 0 38 12Q30 8 20 15Q10 8 2 12Z" fill="#fff"/></svg>
+
+  <main id="ui">
+    <img id="logo" src="assets/logo.png" alt="AXI GRAFIKA – Digital Printing & Graphic Design Studio">
+    <section id="player">
+      <div id="note"><svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18V6l10-2v12a3 3 0 11-2-2.8V7.3L11 8.5V18a3 3 0 11-2-2.8z"/></svg></div>
+      <div id="np"><small>Now Playing</small><b>AXI GRAFIKA - Original Soundtrack</b></div>
+      <div id="eq"><s></s><s style="animation-delay:-.2s"></s><s style="animation-delay:-.5s"></s><s style="animation-delay:-.1s"></s><s style="animation-delay:-.6s"></s><s style="animation-delay:-.3s"></s></div>
+      <button id="pp" aria-label="Putar / jeda"><svg id="ic" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+      <input id="vol" type="range" min="0" max="1" step=".05" value=".7" aria-label="Volume">
+    </section>
+
+    <section id="panel">
+      <div id="car">
+        <div class="sl"><img class="full" src="assets/banner.webp" alt="Promo spesial: cetak lebih hemat, diskon up to 40%"></div>
+        <div class="sl s2"><div class="t"><h3>CETAK<br>BROSUR</h3><p>Brosur • Leaflet • Flyer</p><span class="b">Mulai Rp 50.000</span></div><div class="big">-20%</div><img class="pic" src="assets/c1.webp" alt=""></div>
+        <div class="sl s3"><div class="t"><h3>CETAK<br>STIKER</h3><p>Stiker Vinyl • Label • Kemasan</p><span class="b">Mulai Rp 25.000</span></div><div class="big">-30%</div><img class="pic" src="assets/c2.webp" alt=""></div>
+        <div class="sl s4"><div class="t"><h3>JASA<br>DESAIN</h3><p>Logo • Poster • Sosmed</p><span class="b">Mulai Rp 100.000</span></div><div class="big">-25%</div><img class="pic" src="assets/c3.webp" alt=""></div>
+      </div>
+      <div id="dots"><i class="a"></i><i></i><i></i><i></i></div>
+
+      <div id="cards">
+        <article class="cd c1"><div class="ic">📖</div><h4>CETAK<br>BROSUR</h4><small style="top:50px;left:calc(72*var(--p))">Mulai dari</small><div class="pr"><sup>Rp</sup>50.000</div><span class="dc">-20%</span><img src="assets/c1.webp" alt="Brosur, leaflet, flyer"></article>
+        <article class="cd c2"><div class="ic">🏷️</div><h4>CETAK<br>STIKER</h4><small>Mulai dari</small><div class="pr"><sup>Rp</sup>25.000</div><span class="dc">-30%</span><img src="assets/c2.webp" alt="Stiker vinyl, label, kemasan"></article>
+        <article class="cd c3"><div class="ic">✏️</div><h4>JASA<br>DESAIN</h4><small>Mulai dari</small><div class="pr"><sup>Rp</sup>100.000</div><span class="dc">-25%</span><img src="assets/c3.webp" alt="Logo, poster, sosmed"></article>
+      </div>
+
+      <div id="dv">
+        <img src="assets/truck.webp" alt="">
+        <div class="tx"><h5>DELIVERY SERVICE</h5><span>Pesan mudah, kami antar!</span></div>
+        <div id="cov"><em>COVER AREA</em>✔ Tegal<br>✔ Slawi<br>✔ Sekitarnya</div>
+        <div id="st"><small>MULAI</small><b>Rp 15.000</b></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="config.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const truck=$('#truck');
+if(POS_URL!=='#'){truck.href=POS_URL;truck.target='_blank';truck.rel='noopener'}
+else truck.addEventListener('click',e=>e.preventDefault());
+
+// carousel
+const car=$('#car'),dots=[...document.querySelectorAll('#dots i')];let idx=0,hold=0;
+function go(i){car.scrollTo({left:i*car.clientWidth,behavior:'smooth'})}
+car.addEventListener('scroll',()=>{idx=Math.round(car.scrollLeft/car.clientWidth);dots.forEach((d,k)=>d.classList.toggle('a',k===idx))},{passive:true});
+['touchstart','pointerdown'].forEach(e=>car.addEventListener(e,()=>hold=Date.now()+6000,{passive:true}));
+dots.forEach((d,k)=>d.onclick=()=>go(k));
+setInterval(()=>{if(Date.now()>hold)go((idx+1)%dots.length)},4000);
+
+// kunci gerak atas/bawah: hanya swipe horizontal
+document.addEventListener('touchmove',e=>{if(!e.target.closest('#car'))e.preventDefault()},{passive:false});
+
+// musik
+const au=new Audio();au.loop=true;au.volume=.7;if(AUDIO_SRC)au.src=AUDIO_SRC;
+let on=false;const ic=$('#ic');
+const PLAY='M8 5v14l11-7z',PAUSE='M6 5h4v14H6zm8 0h4v14h-4z';
+$('#pp').onclick=()=>{on=!on;$('#player').classList.toggle('on',on);ic.innerHTML='<path d="'+(on?PAUSE:PLAY)+'"/>';
+  if(AUDIO_SRC){on?au.play().catch(()=>{}):au.pause()}};
+$('#vol').oninput=e=>au.volume=e.target.value;
+</script>
+</body>
+</html>
